@@ -6,10 +6,10 @@
   "author": "John Meade",
   "browser_specific_settings": {
     "gecko": {
-      "id": "ea94d783-c266-4e02-84fa-589702d8ed92",
+      "id": "{ea94d783-c266-4e02-84fa-589702d8ed92}",
       "strict_min_version": "109.0",
       "data_collection_permissions": {
-        "required": [],
+        "required": ["none"],
         "optional": []
       }
     }
