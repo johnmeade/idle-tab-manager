@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Idle Tab Manager",
+  "version": "2.0",
+  "homepage_url": "https://github.com/johnmeade/idle-tab-manager",
+  "author": "John Meade",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ea94d783-c266-4e02-84fa-589702d8ed92",
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": ["browsingActivity"],
+        "optional": []
+      }
+    }
+  },
+  "description": "Unloads idle tabs, keeping recently used and manually excluded tabs. Supports many options and regex filters.",
+  "permissions": ["tabs", "tabGroups", "alarms", "storage"],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"]
+  }
+}

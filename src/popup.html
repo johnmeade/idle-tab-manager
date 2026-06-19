@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: monospace;
+      font-size: 12px;
+      width: 300px;
+      background: #1a1a1a;
+      color: #c8c8c8;
+      padding: 10px;
+    }
+
+    header {
+      margin-bottom: 8px;
+    }
+
+    header h1 {
+      font-size: 13px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    #settings {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #2e2e2e;
+    }
+
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 0;
+    }
+
+    .setting-row label {
+      color: #999;
+    }
+
+    .setting-row input[type="number"] {
+      background: #2a2a2a;
+      color: #ccc;
+      border: 1px solid #444;
+      padding: 2px 6px;
+      font-family: monospace;
+      font-size: 12px;
+      width: 64px;
+      text-align: left;
+      border-radius: 3px;
+    }
+
+    .setting-row input[type="number"]:focus {
+      outline: none;
+      border-color: #666;
+      color: #fff;
+    }
+
+    .setting-row input[type="checkbox"] {
+      accent-color: #2d6a4f;
+      width: 13px;
+      height: 13px;
+      cursor: pointer;
+    }
+
+    .section-header {
+      font-weight: bold;
+      color: #666;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 8px 0 2px;
+    }
+
+    .settings-footer {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 8px;
+    }
+
+    .log-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #2e2e2e;
+      margin-bottom: 4px;
+    }
+
+    .log-label {
+      font-weight: bold;
+      color: #666;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    #log {
+    }
+
+    .entry {
+      display: flex;
+      gap: 8px;
+      padding: 3px 0;
+      border-bottom: 1px solid #222;
+    }
+
+    .ts {
+      color: #555;
+      flex-shrink: 0;
+      width: 36px;
+    }
+
+    .msg { color: #c0c0c0; }
+
+    .msg.ellipsis { color: #3a3a3a; font-style: italic; }
+
+    .empty {
+      padding: 6px 0;
+      color: #444;
+      font-style: italic;
+    }
+
+    button {
+      background: #2a2a2a;
+      color: #ccc;
+      border: 1px solid #444;
+      padding: 3px 10px;
+      cursor: pointer;
+      font-family: monospace;
+      font-size: 12px;
+      border-radius: 3px;
+    }
+
+    button:hover { background: #333; color: #fff; }
+
+    .pattern-add-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      padding: 4px 0 2px;
+    }
+
+    .pattern-add-row input[type="text"] {
+      flex: 1;
+      min-width: 0;
+      background: #2a2a2a;
+      color: #ccc;
+      border: 1px solid #444;
+      padding: 2px 6px;
+      font-family: monospace;
+      font-size: 12px;
+      border-radius: 3px;
+    }
+
+    .pattern-add-row input[type="text"]:focus {
+      outline: none;
+      border-color: #666;
+      color: #fff;
+    }
+
+    .btn-sm { padding: 2px 8px; }
+
+    #titlePatternList, #urlPatternList {
+      list-style: none;
+    }
+
+    #titlePatternList li, #urlPatternList li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 0 2px 8px;
+      border-bottom: 1px solid #222;
+    }
+
+    #titlePatternList li span, #urlPatternList li span {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #8ab;
+    }
+
+    button.btn-remove {
+      background: none;
+      border: 1px solid transparent;
+      color: #555;
+      padding: 0 4px;
+      font-size: 14px;
+    }
+
+    button.btn-remove:hover {
+      background: none;
+      border-color: transparent;
+      color: #c55;
+    }
+  </style>
+</head>
+<body>
+  <header><h1>Idle Tab Manager</h1></header>
+  <section id="settings">
+    <div class="setting-row">
+      <label for="minLoadedTabs">tabs to keep loaded</label>
+      <input type="number" id="minLoadedTabs" min="1" max="20" step="1">
+    </div>
+    <div class="setting-row">
+      <label for="idleTimeoutMinutes">idle timeout (min)</label>
+      <input type="number" id="idleTimeoutMinutes" min="1" max="1440" step="1">
+    </div>
+    <div class="setting-row">
+      <label for="checkIntervalMinutes">check interval (min)</label>
+      <input type="number" id="checkIntervalMinutes" min="1" max="60" step="1">
+    </div>
+    <div class="setting-row">
+      <label for="protectPinned">protect pinned tabs</label>
+      <input type="checkbox" id="protectPinned">
+    </div>
+    <div class="setting-row">
+      <label for="protectAudible">protect audible tabs</label>
+      <input type="checkbox" id="protectAudible">
+    </div>
+    <div class="section-header">title patterns</div>
+    <div class="pattern-add-row">
+      <input type="text" id="newTitlePattern" placeholder="regex pattern…" spellcheck="false">
+      <button id="addTitlePattern" class="btn-sm">+</button>
+    </div>
+    <ul id="titlePatternList"></ul>
+    <div class="section-header">url patterns</div>
+    <div class="pattern-add-row">
+      <input type="text" id="newUrlPattern" placeholder="regex pattern…" spellcheck="false">
+      <button id="addUrlPattern" class="btn-sm">+</button>
+    </div>
+    <ul id="urlPatternList"></ul>
+    <div class="settings-footer">
+      <button id="resetAll" class="btn-sm">reset all settings</button>
+    </div>
+  </section>
+  <div class="log-header">
+    <span class="log-label">log</span>
+    <button id="clearLog" class="btn-sm">clear</button>
+  </div>
+  <div id="log"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
