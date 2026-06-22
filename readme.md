@@ -1,3 +1,10 @@
+# Idle Tab Manager
+
+<p align="center">
+    <img src="img/screenshot1.png" height="400">
+    <img src="img/screenshot2.png" height="400">
+</p>
+
 Highly configurable extension for automatically unloading / discarding tabs, to increase your battery life and reduce CPU / memory load.
 
 By default, the 3 most recently viewed tabs will **not** be discarded, and tabs that have not been viewed for more than 20 minutes **will** be discarded. The only exception enabled by default is for tabs playing audio.
